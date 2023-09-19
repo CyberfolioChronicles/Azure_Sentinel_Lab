@@ -55,7 +55,7 @@ look up the attackers Geolocation information and plot it on an Azure Sentinel M
    </QueryList> 
    '@
 
-   - This XML filter is used to retrieve specific events from the Windows Event Viewer (Security log) with EventID '4625', which typically indicates failed RDP login attempts.
+- This XML filter is used to retrieve specific events from the Windows Event Viewer (Security log) with EventID '4625', which typically indicates failed RDP login attempts.
 
 3. **Creating Sample Log Entries:**
 
@@ -63,7 +63,7 @@ look up the attackers Geolocation information and plot it on an Azure Sentinel M
        # ... (sample log entries for training purposes)
    }
 
-   - This function creates sample log entries that will be used to "train" the log analytics workspace's extraction feature.
+- This function creates sample log entries that will be used to "train" the log analytics workspace's extraction feature.
 
 4. **Checking and Creating Log File:**
 
@@ -72,7 +72,7 @@ look up the attackers Geolocation information and plot it on an Azure Sentinel M
        write-Sample-Log
    }
 
-   - Checks if the log file exists. If not, it creates a new log file and writes sample log entries using the `write-Sample-Log` function.
+- Checks if the log file exists. If not, it creates a new log file and writes sample log entries using the `write-Sample-Log` function.
 
 5. **Infinite Loop to Monitor Event Viewer:**
 
@@ -80,7 +80,7 @@ look up the attackers Geolocation information and plot it on an Azure Sentinel M
        # ... (code inside the loop to continuously check Event Viewer)
    }
 
-   - This sets up an infinite loop to continuously check the Event Viewer for failed RDP login attempts.
+- This sets up an infinite loop to continuously check the Event Viewer for failed RDP login attempts.
 
 6. **Event Processing:**
 
@@ -88,7 +88,7 @@ look up the attackers Geolocation information and plot it on an Azure Sentinel M
        # ... (code to process each event and extract relevant information)
    }
 
-   - Processes each event retrieved from the Event Viewer, extracts relevant information such as timestamp, event ID, source and destination host, username, and source IP.
+- Processes each event retrieved from the Event Viewer, extracts relevant information such as timestamp, event ID, source and destination host, username, and source IP.
 
 7. **Geolocation Retrieval and Logging:**
    
@@ -96,7 +96,7 @@ look up the attackers Geolocation information and plot it on an Azure Sentinel M
        # ... (code to retrieve geolocation based on IP address and log the information)
    }
 
-   - Checks if the event contains a valid source IP address, then uses the IP address to retrieve geolocation information using the "https://api.ipgeolocation.io/" API, and logs the relevant information.
+- Checks if the event contains a valid source IP address, then uses the IP address to retrieve geolocation information using the "https://api.ipgeolocation.io/" API, and logs the relevant information.
 
 This script continuously monitors failed RDP login attempts in the Windows Event Viewer, extracts relevant details, fetches geolocation information for the source IP addresses, and logs this information into a custom log file.
 
@@ -109,13 +109,13 @@ if ("$($event.TimeCreated.Month)".Length -eq 1) {
     $month = "0$($event.TimeCreated.Month)"
 }
 
-  - Extracts the month from the event timestamp and ensures a two-digit representation.
+- Extracts the month from the event timestamp and ensures a two-digit representation.
 
 9. **Formatting the Timestamp**
 
 $timestamp = "$($year)-$($month)-$($day) $($hour):$($minute):$($second)"
 
-  - Constructs a timestamp in the format: "YYYY-MM-DD HH:MM:SS" using the extracted date and time components.
+- Constructs a timestamp in the format: "YYYY-MM-DD HH:MM:SS" using the extracted date and time components.
 
 10. **Extracting Event Information**
 
@@ -125,7 +125,7 @@ $username = $event.properties[5].Value
 $sourceHost = $event.properties[11].Value
 $sourceIp = $event.properties[19].Value
 
-  - Extracts relevant information from the event, such as Event ID, destination host, username, source host, and source IP.
+- Extracts relevant information from the event, such as Event ID, destination host, username, source host, and source IP.
 
 11. **Checking Log File and Timestamp**
 
@@ -137,7 +137,7 @@ else {
     # ... (code to handle when the entry already exists in the log file)
 }
 
-  - Checks if the log entry with the current timestamp already exists or if the log file is empty.
+- Checks if the log entry with the current timestamp already exists or if the log file is empty.
 
 12. **Processing Geolocation Data and Writing to Log file**
   Start-Sleep -Seconds 1
@@ -163,8 +163,8 @@ else {
                 Write-Host -BackgroundColor Black -ForegroundColor Magenta "latitude:$($latitude),longitude:$($longitude),destinationhost:$($destinationHost),username:$($username),sourcehost:$($sourceIp),state:$($state_prov),label:$($country) - $($sourceIp),timestamp:$($timestamp)"
             }
 
-  - Contains the code to retrieve geolocation data based on the source IP and process the retrieved information.
-  - Constructs a log entry with extracted event and geolocation information and writes it to the log file.
+- Contains the code to retrieve geolocation data based on the source IP and process the retrieved information.
+- Constructs a log entry with extracted event and geolocation information and writes it to the log file.
 
 13. **Handling Existing Log Entry**
 
@@ -172,4 +172,4 @@ else {
     # ... (code to handle when the entry already exists in the log file)
 }
 
-  - Contains code to handle the case when an entry with the current timestamp already exists in the log file. In this provided code, it's left empty and does nothing.
+- Contains code to handle the case when an entry with the current timestamp already exists in the log file. In this provided code, it's left empty and does nothing.
