@@ -39,9 +39,9 @@ look up the attackers Geolocation information and plot it on an Azure Sentinel M
    $LOGFILE_NAME = "failed_rdp.log"
    $LOGFILE_PATH = "C:\ProgramData\$($LOGFILE_NAME)"
 
-   - `API_KEY`: This variable stores the API key obtained from "https://ipgeolocation.io/" to access their geolocation service.
-   - `LOGFILE_NAME`: The name of the log file.
-   - `LOGFILE_PATH`: The full path where the log file will be stored.
+- `API_KEY`: This variable stores the API key obtained from "https://ipgeolocation.io/" to access their geolocation service.
+- `LOGFILE_NAME`: The name of the log file.
+- `LOGFILE_PATH`: The full path where the log file will be stored.
 
 2. **XML Filter for Event Viewer:**
    
