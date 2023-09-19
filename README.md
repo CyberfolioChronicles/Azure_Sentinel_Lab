@@ -25,12 +25,6 @@ look up the attackers Geolocation information and plot it on an Azure Sentinel M
 - <b>Azure resource groups[VM, NSG, log analytics wrokspace]</b>
 - <b>Azure Sentinel</b>
 
-<h2>Attacks from China coming in; Custom logs being output with geodata</h2>
-
-<p align="center">
-<img src="https://i.imgur.com/LhDCRz4.jpeg" height="85%" width="85%" alt="Image Analysis Dataflow"/>
-</p>
-
 <h2>World map of incoming attacks after 14 hours (built custom logs including geodata)</h2>
 
 <p align="center">
@@ -115,13 +109,13 @@ if ("$($event.TimeCreated.Month)".Length -eq 1) {
     $month = "0$($event.TimeCreated.Month)"
 }
 
-- Extracts the month from the event timestamp and ensures a two-digit representation.
+  - Extracts the month from the event timestamp and ensures a two-digit representation.
 
 9. **Formatting the Timestamp**
 
 $timestamp = "$($year)-$($month)-$($day) $($hour):$($minute):$($second)"
 
-- Constructs a timestamp in the format: "YYYY-MM-DD HH:MM:SS" using the extracted date and time components.
+  - Constructs a timestamp in the format: "YYYY-MM-DD HH:MM:SS" using the extracted date and time components.
 
 10. **Extracting Event Information**
 
@@ -131,7 +125,7 @@ $username = $event.properties[5].Value
 $sourceHost = $event.properties[11].Value
 $sourceIp = $event.properties[19].Value
 
-- Extracts relevant information from the event, such as Event ID, destination host, username, source host, and source IP.
+  - Extracts relevant information from the event, such as Event ID, destination host, username, source host, and source IP.
 
 11. **Checking Log File and Timestamp**
 
@@ -143,7 +137,7 @@ else {
     # ... (code to handle when the entry already exists in the log file)
 }
 
-- Checks if the log entry with the current timestamp already exists or if the log file is empty.
+  - Checks if the log entry with the current timestamp already exists or if the log file is empty.
 
 12. **Processing Geolocation Data and Writing to Log file**
   Start-Sleep -Seconds 1
@@ -169,8 +163,8 @@ else {
                 Write-Host -BackgroundColor Black -ForegroundColor Magenta "latitude:$($latitude),longitude:$($longitude),destinationhost:$($destinationHost),username:$($username),sourcehost:$($sourceIp),state:$($state_prov),label:$($country) - $($sourceIp),timestamp:$($timestamp)"
             }
 
-- Contains the code to retrieve geolocation data based on the source IP and process the retrieved information.
-- Constructs a log entry with extracted event and geolocation information and writes it to the log file.
+  - Contains the code to retrieve geolocation data based on the source IP and process the retrieved information.
+  - Constructs a log entry with extracted event and geolocation information and writes it to the log file.
 
 13. **Handling Existing Log Entry**
 
@@ -178,4 +172,4 @@ else {
     # ... (code to handle when the entry already exists in the log file)
 }
 
-- Contains code to handle the case when an entry with the current timestamp already exists in the log file. In this provided code, it's left empty and does nothing.
+  - Contains code to handle the case when an entry with the current timestamp already exists in the log file. In this provided code, it's left empty and does nothing.
