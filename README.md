@@ -25,6 +25,12 @@ look up the attackers Geolocation information and plot it on an Azure Sentinel M
 - <b>Azure resource groups[VM, NSG, log analytics wrokspace]</b>
 - <b>Azure Sentinel</b>
 
+<h2>Network Design</h2>
+
+<p align="center">
+<img src="https://i.imgur.com/TGMwqFd.png" height="85%" width="85%" alt="Image Analysis Dataflow"/>
+</p>
+
 <h2>World map of incoming attacks after 14 hours (built custom logs including geodata)</h2>
 
 <p align="center">
