@@ -1,4 +1,4 @@
-FAILED_RDP_WITH_GEO_CL 
+FAILED_RDP_GEO_CL 
 | extend username = extract(@"username:([^,]+)", 1, RawData),
          timestamp = extract(@"timestamp:([^,]+)", 1, RawData),
          latitude = extract(@"latitude:([^,]+)", 1, RawData),
